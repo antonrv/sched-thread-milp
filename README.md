@@ -10,12 +10,12 @@ This is a implementation of a Mixed-Integer Linear Program using Gurobi as the b
 
 **GUROBI** software ( http://www.gurobi.com/index ) with a valid license.
 
-## Install, run and test
+## Compile and test example
 
 ```sh
-export GUROBI_HOME=<YOUR_GUROBI_PATH> # e.g. /gurobi810/linux64
+export GUROBI_HOME=[YOUR_GUROBI_PATH] # e.g. /opt/gurobi810/linux64
 
-cd sched-thread-milp
+# In root folder
 mkdir build/
 cd build
 cmake ../
@@ -41,16 +41,18 @@ After building, the binary build/bin/stm will accept the following arguments.
 --input=<STRING>        # Filename storing previous gurobi solution (optional)
 --bigm=<FLOAT>          # Upper bound for the makespan
 --inorder=<BOOL>        # To force in-order execution
---threads=<INT>         # Number of CPU threads for solving
---timeout<INT>          # Solver timeout in seconds
+--threads=<INTEGER>     # Number of CPU threads for solving
+--timeout<INTEGER>      # Solver timeout in seconds
 ```
 
 **Matrices**
-*Delay* matrix that stores the time (float) required for a task running with a threading configuration.
-*Power* matrix that stores the power (float) required for a task running with a threading configuration.
-*Capacity* matrix that stores the number of cores (int) required for a task running with a threading configuration.
-*Precedence* matrix stores (bool) in each column the sucessors for a given row.
 
+* *Delay* matrix that stores the time (float) required for a task running with a threading configuration.
+* *Power* matrix that stores the power (float) required for a task running with a threading configuration.
+* *Capacity* matrix that stores the number of cores (int) required for a task running with a threading configuration.
+* *Precedence* matrix stores (bool) in each column the sucessors for a given row.
+
+Matrix elements must be separated by comma (see examples in test/).
 
 ```sh
 --delay=<FILENAME>      # N rows (# tasks) X H columns (# threading configurations)
@@ -66,4 +68,4 @@ After building, the binary build/bin/stm will accept the following arguments.
 This project is licensed under the MIT License.
 
 ## Acknowledgments
-ArTeCS group - Universidad Complutense de Madrid
+ArTeCS group - Universidad Complutense de Madrid.
